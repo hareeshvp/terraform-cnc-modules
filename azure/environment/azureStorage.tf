@@ -1,6 +1,7 @@
 
 
 resource "azurerm_storage_account" "testsa" {
+  count         = var.scanfarm_enabled ? 1 : 0
   name                     = "${var.prefix}storageac"
   resource_group_name      = var.rg_name
   location                 = var.rg_location
@@ -12,6 +13,7 @@ resource "azurerm_storage_account" "testsa" {
 }
 
 resource "azurerm_storage_account_network_rules" "test" {
+  count         = var.scanfarm_enabled ? 1 : 0
   resource_group_name  = var.rg_name
   storage_account_name = azurerm_storage_account.testsa.name
 
@@ -22,6 +24,7 @@ resource "azurerm_storage_account_network_rules" "test" {
 }
 
 resource "azurerm_storage_container" "bucket" {
+  count         = var.scanfarm_enabled ? 1 : 0
   name                  = "${var.prefix}-bucket"
   storage_account_name  = azurerm_storage_account.testsa.name
   container_access_type = "private"
