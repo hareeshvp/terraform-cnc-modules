@@ -46,3 +46,9 @@ variable "storage_firewall_ip_rules" {
   default = ["0.0.0.0/0"]
 
 }
+
+variable "scanfarm_enabled"{
+  type = bool
+  default = false
+  description = "to enable the scanfarm components"
+}

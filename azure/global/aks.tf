@@ -67,6 +67,7 @@ resource "azurerm_kubernetes_cluster" "tf-k8s-acc" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "custompool" {
+  count         = var.scanfarm_enabled ? 1 : 0
   name                  = var.custom_pool_name   
   kubernetes_cluster_id = azurerm_kubernetes_cluster.tf-k8s-acc.id
   vm_size               = var.custompool_vm_size   

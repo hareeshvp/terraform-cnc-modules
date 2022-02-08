@@ -208,3 +208,9 @@ variable "ingress_namespace" {
   description = "Namespace in which ingress controller should be deployed. If empty, then ingress-controller will be created"
   default     = ""
 }
+
+variable "scanfarm_enabled"{
+  type = bool
+  default = false
+  description = "to enable the scanfarm components"
+}
