@@ -17,20 +17,20 @@ clone the terraform modules from repo
 ```bash
 $ cd terraform-cnc-modules/azure/global
 export TF_VAR_subscription_id ="YOUR AZURE SUBSCRIPTION ID"  # you can find the subscription id in azure portal
-$ vi 1.auto.tfvars  # modify/add input values per your requirements in the 1.auto.tfvars file and save it 
+$ vi terraform.tfvars.example # modify/add input values per your requirements and save it
 $ terraform init
-$ terraform plan 
-$ terraform apply --auto-approve 
+$ terraform plan -var-file="terraform.tfvars.example"
+$ terraform apply --auto-approve -var-file="terraform.tfvars.example"
 ```
 you can use sample values in 1.auto.tfvars as reference .
 #### Create environment resources
 ```bash
 $ cd terraform-cnc-modules/azure/environment
 TF_VAR_subscription_id ="YOUR AZURE SUBSCRIPTION ID"
-$ vi 1.auto.tfvars  # modify/add input values as per terraform output of your step-1(global-resource module) and save it
+$ vi terraform.tfvars.example # modify/add input values per your requirements and save it
 $ terraform init
-$ terraform plan 
-$ terraform apply --auto-approve
+$ terraform plan -var-file="terraform.tfvars.example"
+$ terraform apply --auto-approve -var-file="terraform.tfvars.example"
 ```
 
 
@@ -52,6 +52,7 @@ Name | Description | Type | Default
 `firewall_subnet_address_prefix`|The address prefix to use for the Firewall subnet|list|`[]`
 `service_endpoints`|service endpoints for the virtual subnet|object|`{}`
 `cluster_endpoint_public_access_cidrs`|"List of CIDR blocks which can access the Azure AKS public API server endpoint|list(string)|`[]`
+`scanfarm_enabled` | "to enabled the scanfarm components | bool | `false`
 `default_node_pool_name`|name of the default node pool |string|`agentpool`
 `default_node_pool_vm_size`|vm size of the default node pool|string|`Standard_DS2_v2`
 `availability_zones`|availability zones for the cluster| list(string) | `["1","2"]`
@@ -70,11 +71,11 @@ Name | Description | Type | Default
   }`
 `custompool_min_count` | minium number of nodes in custom node pool | number | `1`
 `custompool_max_count` | maximum number of nodes in custom node pool | number | `5`
-deploy_ingress_controller             | Flag to enable/disable the nginx-ingress-controller deployment in the aks cluster                    | `bool`         | `true`
-| ingress_namespace                     | Namespace in which ingress controller should be deployed. If empty, then ingress-controller will be created | `string`       | `""`
+`deploy_ingress_controller `            | Flag to enable/disable the nginx-ingress-controller deployment in the aks cluster                    | `bool`         | `true`
+| `ingress_namespace`                     | Namespace in which ingress controller should be deployed. If empty, then ingress-controller will be created | `string`       | `""`
 `ingress_controller_helm_chart_version `| Version of the nginx-ingress-controller helm chart                                                   | `string`       | `3.35.0`
 `ingress_white_list_ip_ranges`          | List of source ip ranges for load balancer whitelisting; we recommend you to pass the list of your organization source IPs. Note: You must add NAT IP of your existing VPC or 
-| ingress_settings                      | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx | `map("string")` | `{}`
+| `ingress_settings`                      | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx | `map("string")` | `{}`
 
 
 
