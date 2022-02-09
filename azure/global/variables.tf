@@ -37,7 +37,7 @@ variable "address_prefixes" {
 
 variable "kubernetes_version" {
   type    = string
-  default = "1.20.9"
+  default = "1.21"
 }
 
 variable "workers_count" {
