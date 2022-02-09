@@ -76,7 +76,7 @@ variable "db_tier" {
 variable "db_version" {
   type        = string
   description = "Postgres database version"
-  default     = "POSTGRES_11"
+  default     = "POSTGRES_14"
 }
 
 variable "db_availability" {

@@ -201,7 +201,7 @@ variable "db_name" {
 variable "db_postgres_version" {
   type        = string
   description = "Postgres version of the RDS instance"
-  default     = "11"
+  default     = "14"
 }
 
 # NOTE: Do NOT use 'user' as the value for 'username' as it throws:
@@ -228,7 +228,7 @@ variable "db_public_access" {
 variable "db_instance_class" {
   type        = string
   description = "Instance type of the RDS instance"
-  default     = "db.t2.small"
+  default     = "db.t3.small"
 }
 
 variable "db_size_in_gb" {
