@@ -71,7 +71,7 @@ variable "map_users" {
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version of the EKS cluster"
-  default     = "1.19"
+  default     = "1.21"
 }
 
 variable "cluster_endpoint_public_access_cidrs" {

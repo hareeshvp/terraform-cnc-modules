@@ -126,7 +126,7 @@ variable "master_ipv4_cidr_block" {
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version of the GKE cluster"
-  default     = "1.19.0"
+  default     = "1.21.0"
 }
 
 variable "release_channel" {
