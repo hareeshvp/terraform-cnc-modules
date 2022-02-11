@@ -7,7 +7,7 @@ output "postgres_server_id" {
 }
 
 output "storageaccount_name" {
-  value = resource.azurerm_storage_account.testsa.name
+  value = var.scanfarm_enabled ? resource.azurerm_storage_account.testsa[0].name: ""
 }
 
 output "db_login" {
@@ -21,10 +21,10 @@ output "db_password" {
 }
 
 output "bucket" {
-  value = resource.azurerm_storage_container.bucket.name
+  value = var.scanfarm_enabled ? resource.azurerm_storage_container.bucket[0].name: ""
 }
 
 output "storage_access_key" {
-  value     = resource.azurerm_storage_account.testsa.primary_access_key
+  value = var.scanfarm_enabled ? resource.azurerm_storage_account.testsa[0].primary_access_key: ""
   sensitive = true
 }
