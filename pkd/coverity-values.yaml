@@ -14,8 +14,6 @@ cim:
     updateLicenseJob:
       enabled: true
       force: true
-    loadBalancer:
-      trustedRegex: ".*"
   cimtools:
     version: ""
   cimdatabase:

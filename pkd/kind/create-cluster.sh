@@ -3,7 +3,7 @@
 set -xv
 set -euo pipefail
 
-KIND_NODE_IMAGE=${KIND_NODE_IMAGE:-"kindest/node:v1.20.7"}
+KIND_NODE_IMAGE=${KIND_NODE_IMAGE:-"kindest/node:v1.22.5"}
 REGISTRY_IMAGE=${REGISTRY_IMAGE:-"docker.io/library/registry:2"}
 REGISTRY_NAME=${REGISTRY_NAME:-'kind-registry'}
 REGISTRY_PORT=${REGISTRY_PORT:-'5000'}
