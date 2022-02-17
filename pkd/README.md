@@ -13,7 +13,24 @@ You will also need:
  - access to the Coverity helm chart
  - a valid tls.crt and tls.key
    (this example includes a self-signed certificate but you should supply your own certificate)
+
+## What this includes
+
+A script and configuration to set up a [KinD cluster](https://kind.sigs.k8s.io/).  
+Only use this if you do not already have a Kubernetes cluster!
+This script:
+ - assumes you have Docker
+ - creates a KinD cluster exposing ports 80 and 443
+ - deploys an nginx ingress controller
  
+A script and configuration to deploy Coverity and dependencies on any working Kubernetes cluster of the right version.
+This script:
+ - deploys a Postgres helm chart
+ - deploys a Minio helm chart
+ - creates secrets for your license and certficates
+ - labels a node to enable Coverity analysis on that node
+ - deploys the Coverity helm chart
+
 ## Setup procedure
 
 1. Get Coverity images into a registry that your kubernetes cluster can pull from
