@@ -4,19 +4,20 @@ set -xv
 set -euo pipefail
 
 
-export COVERITY_APP_NAME=${COVERITY_APP_NAME:-"coverity-example"}
-export COVERITY_CHART_LOCATION=${COVERITY_CHART_LOCATION:-sig-repo/cnc}
+COVERITY_APP_NAME=${COVERITY_APP_NAME:-"coverity-example"}
+COVERITY_CHART_LOCATION=${COVERITY_CHART_LOCATION:-sig-repo/cnc}
 
-export COVERITY_ANALYSIS_NODE_NAME=${COVERITY_ANALYSIS_NODE_NAME:-kind-control-plane}
-export COVERITY_ANALYSIS_NODE_LABEL=${COVERITY_ANALYSIS_NODE_LABEL:-"coverity-custom-node-pool-label"}
+COVERITY_ANALYSIS_NODE_NAME=${COVERITY_ANALYSIS_NODE_NAME:-kind-control-plane}
+COVERITY_ANALYSIS_NODE_LABEL=${COVERITY_ANALYSIS_NODE_LABEL:-"coverity-custom-node-pool-label"}
 
-export COVERITY_NS=${COVERITY_NS:-"coverity"}
-export COVERITY_LICENSE_SECRET_NAME="${COVERITY_APP_NAME}-license"
-export COVERITY_HOST=${COVERITY_HOST:-"coverity-example.local"}
+COVERITY_NS=${COVERITY_NS:-"coverity"}
+COVERITY_LICENSE_SECRET_NAME="${COVERITY_APP_NAME}-license"
+COVERITY_HOST=${COVERITY_HOST:-"coverity.example"}
+COVERITY_TLS_SECRET_NAME="coverity-tls"
 
-export MINIO_COVERITY_BUCKET_NAME="${COVERITY_NS}-uploads-bucket"
-export MINIO_ROOT_USER=${MINIO_ROOT_USER:-"admin"}
-export MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-"synopsys"}
+MINIO_COVERITY_BUCKET_NAME="${COVERITY_NS}-uploads-bucket"
+MINIO_ROOT_USER=${MINIO_ROOT_USER:-"admin"}
+MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-"synopsys"}
 
 
 kubectl create ns "$COVERITY_NS" || true
@@ -62,10 +63,10 @@ helm upgrade --install "coverity-minio" minio \
 kubectl create secret generic "$COVERITY_LICENSE_SECRET_NAME" -n "$COVERITY_NS" \
   --from-file=license.dat
 
-#  kubectl create secret tls "$COVERITY_CIM_TLS_NGINX_SECRET_NAME" \
-#    --namespace "$COVERITY_NS" \
-#    --cert=tls.crt \
-#    --key=tls.key
+kubectl create secret tls "$COVERITY_TLS_SECRET_NAME" \
+  --namespace "$COVERITY_NS" \
+  --cert=tls.crt \
+  --key=tls.key
 
 
 helm install "$COVERITY_APP_NAME" "${COVERITY_CHART_LOCATION}" \

@@ -4,11 +4,11 @@ image:
 apiIngress:
   enabled: true
   ingressClassName: nginx
-  hostname: coverity.local
-#  extraTls:
-#  - hosts:
-#      - cnc-example.local
-#    secretName: cnc-cim-tls-nginx
+  hostname: coverity.example
+  extraTls:
+  - hosts:
+      - coverity.example
+    secretName: coverity-tls
   path: "/upload(/|$)(.*)"
   annotations:
     ingress.kubernetes.io/hsts: "true"

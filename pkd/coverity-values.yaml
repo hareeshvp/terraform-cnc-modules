@@ -26,11 +26,11 @@ cim:
     enabled: true
     annotations: {}
     hosts:
-      - coverity.local
+      - coverity.example
     tls:
-      - secretName: "coverity-tls-nginx"
+      - secretName: "coverity-tls"
         hosts:
-          - coverity.local
+          - coverity.example
 
 cnc-processor-loader:
   version: ""
@@ -78,7 +78,7 @@ cnc-storage-service:
     internal:
       url: "http://coverity-minio:9000"
     external:
-      url: "https://coverity.local"
+      url: "https://coverity.example"
       proxyPath: "upload"
 
 trust-stores:
