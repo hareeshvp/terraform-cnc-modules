@@ -15,7 +15,7 @@ resource "azurerm_storage_account" "testsa" {
 resource "azurerm_storage_account_network_rules" "test" {
   count         = var.scanfarm_enabled ? 1 : 0
   resource_group_name  = var.rg_name
-  storage_account_name = azurerm_storage_account.testsa.name
+  storage_account_name = azurerm_storage_account.testsa[0].name
 
   default_action             = "Deny"
   ip_rules                   = var.storage_firewall_ip_rules
@@ -26,6 +26,6 @@ resource "azurerm_storage_account_network_rules" "test" {
 resource "azurerm_storage_container" "bucket" {
   count         = var.scanfarm_enabled ? 1 : 0
   name                  = "${var.prefix}-bucket"
-  storage_account_name  = azurerm_storage_account.testsa.name
+  storage_account_name  = azurerm_storage_account.testsa[0].name
   container_access_type = "private"
 }

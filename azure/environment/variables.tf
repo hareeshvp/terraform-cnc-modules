@@ -31,7 +31,7 @@ variable "db_password" {
 variable "postgresql_version" {
   type        = string
   description = "postgresql DB version"
-  default     = "14"
+  default     = "13"
 }
 
 
