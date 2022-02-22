@@ -17,5 +17,5 @@ output "publicip" {
 }
 
 output "cluster_name" {
-  value = azurerm_kubernetes_cluster.tf-k8s-acc.name
+  value = azurerm_kubernetes_cluster.aks.name
 }

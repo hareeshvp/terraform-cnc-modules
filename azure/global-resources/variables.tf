@@ -6,7 +6,7 @@ variable "prefix" {
 
 
 variable "subscription_id" {
-  type    = string
+  type = string
 
 }
 ####################### VNET ########################
@@ -53,7 +53,7 @@ variable "workers_type" {
 variable "cluster_endpoint_public_access_cidrs" {
   description = "List of CIDR blocks which can access the Azure AKS public API server endpoint."
   type        = list(string)
-  default = ["0.0.0.0/0"]
+  default     = ["0.0.0.0/0"]
 }
 
 
@@ -209,8 +209,8 @@ variable "ingress_namespace" {
   default     = ""
 }
 
-variable "scanfarm_enabled"{
-  type = bool
-  default = false
+variable "scanfarm_enabled" {
+  type        = bool
+  default     = false
   description = "to enable the scanfarm components"
 }

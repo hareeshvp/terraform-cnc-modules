@@ -8,7 +8,7 @@ variable "rg_location" {
 }
 
 variable "subscription_id" {
-  type = string
+  type        = string
   description = "azure account subscription id"
 }
 
@@ -25,7 +25,7 @@ variable "db_username" {
 variable "db_password" {
   type        = string
   description = "Password for the master DB user; If empty, then random password will be set by default. Note: This will be stored in the state file"
-  default     = "Synopsys@123"
+  default     = ""
 }
 
 variable "postgresql_version" {
@@ -34,6 +34,23 @@ variable "postgresql_version" {
   default     = "13"
 }
 
+variable "db_firewall_start_ip_address" {
+  type        = string
+  description = "start ip address for the postgres firewall rule"
+  default     = "0.0.0.0"
+}
+
+variable "db_firewall_end_ip_address" {
+  type        = string
+  description = "end ip address for the postgres firewall rule"
+  default     = "0.0.0.0"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Name of the postgres instance; if empty, then CloudSQL instance will be created"
+  default     = ""
+}
 
 variable "vnet_subnetid" {
   type        = list(string)
@@ -47,8 +64,34 @@ variable "storage_firewall_ip_rules" {
 
 }
 
-variable "scanfarm_enabled"{
-  type = bool
-  default = false
+variable "storage_account_replication_type" {
+  type    = string
+  default = "GRS"
+}
+
+variable "scanfarm_enabled" {
+  type        = bool
+  default     = false
   description = "to enable the scanfarm components"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "azure Tags to add to all resources created (wherever possible)"
+  default = {
+    product    = "cnc"
+    automation = "dns"
+    managedby  = "terraform"
+  }
+}
+
+variable "sku_name" {
+  description = "postgres sku_name "
+  default     = "GP_Standard_D4s_v3"
+}
+
+variable "db_storage" {
+  description = "db storage size in mb"
+  type        = number
+  default     = 32768
 }

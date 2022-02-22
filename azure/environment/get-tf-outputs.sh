@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ../global
+cd ../global-resources
 echo "export CNC_CLUSTER_NAME=$(terraform output -raw cluster_name)"
 echo "export CNC_CLUSTER_REGION=$(terraform output -raw rg_location)"
 echo "export AZ_RESOURCE_GROUP=$(terraform output -raw rg_name)"

@@ -1,5 +1,6 @@
-prefix = "cnctest1"
+prefix = "cnclatest"
 vnet_subnetid =[" "]  # subnetid from the global output
 rg_location = "westeurope"     # location of the resource group to be created default is West europe
-rg_name = "tfresourcegroup"     # name of the azure resource group
+rg_name = "tflatest"     # name of the azure resource group
 storage_firewall_ip_rules=["0.0.0.0/0"]         # Add the IP's based on your requirement .
+scanfarm_enabled = true
