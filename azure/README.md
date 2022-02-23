@@ -1,6 +1,9 @@
 # CNC-Azure
 
-azure terraform automation work related to CNC .
+Terraform creates the below AZURE cloud resources by using the individual modules.
+- [global-resources](./global-resources): This module will create the VPC network, subnetwork and GKE cluster.
+- [environment](./environment): This module will create the Postgresql server, azure-blob-storage container(if scanfarm_enabled is true) and deploy nginx-ingress-controller in it
+
 
 Azure Cli needs to be installed to work with azure terraform automation modules . please refer https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 #### Get set up with azure
@@ -15,8 +18,8 @@ clone the terraform modules from repo
 
 #### Create global resources
 ```bash
-$ cd terraform-cnc-modules/azure/global
-export TF_VAR_subscription_id ="YOUR AZURE SUBSCRIPTION ID"  # you can find the subscription id in azure portal
+$ cd terraform-cnc-modules/azure/global-resources
+export TF_VAR_subscription_id ="YOUR AZURE SUBSCRIPTION ID"  # you can find the subscription id in azure portal or in the "id" value of the json output when you run "az login" command
 $ vi terraform.tfvars.example # modify/add input values per your requirements and save it
 $ terraform init
 $ terraform plan -var-file="terraform.tfvars.example"
@@ -32,10 +35,6 @@ $ terraform init
 $ terraform plan -var-file="terraform.tfvars.example"
 $ terraform apply --auto-approve -var-file="terraform.tfvars.example"
 ```
-
-
-
-
 
 ## Inputs
 
@@ -77,9 +76,7 @@ Name | Description | Type | Default
 `ingress_white_list_ip_ranges`          | List of source ip ranges for load balancer whitelisting; we recommend you to pass the list of your organization source IPs. Note: You must add NAT IP of your existing VPC or 
 | `ingress_settings`                      | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx | `map("string")` | `{}`
 
-
-
-## global Outputs
+## global resouce Outputs
 
 Name | Description
 ---- | -----------
@@ -96,11 +93,11 @@ Name | Description
 Name | Description | Type | Default
 ---- | ----------- | ---- | -------
 `prefix` | this is a unique value will be added as a prefix for resource name . | string |`""`
-`rg_location` | location of azure resource group . you will get it from global | string | `westeurope`
+`rg_location` | location of azure resource group . you will get it from global | string | `""`
 `rg_name` | resouce group name , you will get it from global output .|string | `""`
 `db_username` | Username for the master DB user. Note: Do NOT use 'user' as the value" | string | `psqladmin`
-`db_password` | Password for the master DB user; If empty, then random password will be set by default. Note: This will be stored in the state file | string | `Synopsys@123`
-`postgresql_version` | version of the postgresql database server | string | `"12"`
+`db_password` | Password for the master DB user; If empty, then random password will be set by default. Note: This will be stored in the state file | string | `""`
+`postgresql_version` | version of the postgresql database server | string | `"13"`
 `vnet_subnetid` | vnet_subnetid to attached with storage account , you will get it from global output | list("string") | `[]`
 `storage_firewall_ip_rules` | the whitelisted ip's for storage account access | list(string) | `[]`
 
@@ -115,7 +112,6 @@ Name | Description
  `bucket` | azure storage bucket name 
  `storage_access_key` | access key which is used to access to storage bucket .
  `storageaccount_name` | name of azure storage account .
-
 
  while destroying , please destroy the environment resources first and then destroy the global resources .
 
