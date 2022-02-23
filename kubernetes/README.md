@@ -11,6 +11,13 @@ You will also need:
  - a valid Coverity license
  - access to Coverity images
  - access to the Coverity helm chart
+    
+    ```bash
+    helm repo add sig-repo https://sig-repo.synopsys.com/sig-cloudnative
+    helm repo update
+    helm search repo sig-repo/cnc
+    ```
+   
  - a valid tls.crt and tls.key
    (this example includes a self-signed certificate but you should supply your own certificate)
 
