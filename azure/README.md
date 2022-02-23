@@ -40,11 +40,10 @@ $ terraform apply --auto-approve -var-file="terraform.tfvars.example"
 
 Name | Description | Type | Default
 ---- | ----------- | ---- | -------
-`resource_group_name` | The name of the resource group in which resources are created | string | `""`
-`location`|The location of the resource group in which resources are created| string | `""`
+`rg_name` | The name of the resource group in which resources are created | string | `""`
+`rg_location`|The location of the resource group in which resources are created| string | `""`
 `vnetwork_name`|The name of the virtual network| string | `""`
 `vnet_address_space`|Virtual Network address space to be used |list|`[]`
-`subnets`|For each subnet, create an object that contain fields|object|`{}`
 `subnet_name`|A name of subnets inside virtual network| object |`{}`
 `subnet_address_prefix`|A list of subnets address prefixes inside virtual network| list |`{}`
 `gateway_subnet_address_prefix`|The address prefix to use for the gateway subnet|list|`null`
@@ -61,13 +60,12 @@ Name | Description | Type | Default
 `default_node_pool_min_node_count`|minimum number of nodes on default node pool of the cluster| number | `1`
 `identity_type` | The type of identity used for the managed cluster. Possible values are SystemAssigned and UserAssigned. If UserAssigned is set, a user_assigned_identity_id must be set as well | string |`SystemAssigned`
 `network_plugin` | Network plugin to use for networking. Currently supported values are azure and kubenet. Changing this forces a new resource to be created. | string | `kubenet`
-`jobfarm_pool_name` | name of the jobfarm node pool | string | `medium`
+`jobfarm_pool_name` | name of the jobfarm node pool | string | `small`
 `jobfarmpool_vm_size` | vm size of the jobfarm node pool(additional) | string | `Standard_D8as_v4`
 `node_taints` | taints to be added to the nodes | list(string) | `["NodeType=ScannerNode:NoSchedule"]`
 `jobfarmpool_os_disk_type` | additional nodepool os disk type | string | `Ephemeral`
 `enable_auto_scaling` |  to enable the auto scaling | bool | `true`
-`node_labels` | labels to be set to the nodes | map(string) | `{ "app" : "jobfarm","pool-type" : "medium"
-  }`
+`node_labels` | labels to be set to the nodes | map(string) | `{ "app" : "jobfarm","pool-type" : "small"}`
 `jobfarmpool_min_count` | minium number of nodes in jobform node pool | number | `1`
 `jobfarmpool_max_count` | maximum number of nodes in jobfarm node pool | number | `5`
 `deploy_ingress_controller `            | Flag to enable/disable the nginx-ingress-controller deployment in the aks cluster                    | `bool`         | `true`
