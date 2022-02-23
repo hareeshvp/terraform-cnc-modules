@@ -10,15 +10,8 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = azurerm_resource_group.rg.name
 }
 
-resource "azurerm_subnet" "subnet1" {
-  name                 = "AzureBastionSubnet"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.bastion_address_prefixes
-  service_endpoints    = var.service_endpoints
-}
 
-resource "azurerm_subnet" "subnet2" {
+resource "azurerm_subnet" "subnet" {
   name                 = "${var.prefix}-subnet2"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
@@ -34,14 +27,3 @@ resource "azurerm_public_ip" "publicip" {
   sku                 = "Standard"
 }
 
-resource "azurerm_bastion_host" "bastionhost" {
-  name                = "AzureBastionSubnet"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-  ip_configuration {
-    name                 = "configuration"
-    subnet_id            = azurerm_subnet.subnet1.id
-    public_ip_address_id = azurerm_public_ip.publicip.id
-  }
-}

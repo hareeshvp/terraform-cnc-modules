@@ -1,9 +1,8 @@
 resource "random_string" "password" {
-  count   = !local.is_postgres_instance_exist && length(var.db_password) == 0 ? 1 : 0
+  count   = length(var.db_password) == 0 ? 1 : 0
   length  = 16
   special = false
 }
-
 
 resource "azurerm_postgresql_flexible_server" "postgres" {
   name                   = "${var.prefix}psqlserver"
@@ -15,9 +14,7 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   storage_mb             = var.db_storage
   sku_name               = var.sku_name
   tags                   = var.tags
-
 }
-
 
 resource "azurerm_postgresql_flexible_server_configuration" "serverconfig" {
   name      = "require_secure_transport"

@@ -63,14 +63,14 @@ Name | Description | Type | Default
 `identity_type` | The type of identity used for the managed cluster. Possible values are SystemAssigned and UserAssigned. If UserAssigned is set, a user_assigned_identity_id must be set as well | string |`SystemAssigned`
 `network_plugin` | Network plugin to use for networking. Currently supported values are azure and kubenet. Changing this forces a new resource to be created. | string | `kubenet`
 `custom_pool_name` | name of the custom node pool | string | `medium`
-`custompool_vm_size` | vm size of the custom node pool(additional) | string | `Standard_D8as_v4`
+`jobfarmpool_vm_size` | vm size of the custom node pool(additional) | string | `Standard_D8as_v4`
 `node_taints` | taints to be added to the nodes | list(string) | `["NodeType=ScannerNode:NoSchedule"]`
-`custompool_os_disk_type` | additional nodepool os disk type | string | `Ephemeral`
+`jobfarmpool_os_disk_type` | additional nodepool os disk type | string | `Ephemeral`
 `enable_auto_scaling` |  to enable the auto scaling | bool | `true`
 `node_labels` | labels to be set to the nodes | map(string) | `{ "app" : "jobfarm","pool-type" : "medium"
   }`
-`custompool_min_count` | minium number of nodes in custom node pool | number | `1`
-`custompool_max_count` | maximum number of nodes in custom node pool | number | `5`
+`jobfarmpool_min_count` | minium number of nodes in custom node pool | number | `1`
+`jobfarmpool_max_count` | maximum number of nodes in custom node pool | number | `5`
 `deploy_ingress_controller `            | Flag to enable/disable the nginx-ingress-controller deployment in the aks cluster                    | `bool`         | `true`
 | `ingress_namespace`                     | Namespace in which ingress controller should be deployed. If empty, then ingress-controller will be created | `string`       | `""`
 `ingress_controller_helm_chart_version `| Version of the nginx-ingress-controller helm chart                                                   | `string`       | `3.35.0`

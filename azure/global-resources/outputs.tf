@@ -9,7 +9,7 @@ output "vnet_name" {
 }
 
 output "subnetid" {
-  value = resource.azurerm_subnet.subnet2.id
+  value = resource.azurerm_subnet.subnet.id
 }
 
 output "publicip" {

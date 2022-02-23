@@ -1,6 +1,7 @@
 prefix = "cnclatest"
-vnet_subnetid =[" "]  # subnetid from the global output
+vnet_subnetid =["/subscriptions/80caff1e-5b72-4de9-b3fe-eb3de148423c/resourceGroups/tflatest/providers/Microsoft.Network/virtualNetworks/cnclatest-net/subnets/cnclatest-subnet2"]  # subnetid from the global output
 rg_location = "westeurope"     # location of the resource group to be created default is West europe
 rg_name = "tflatest"     # name of the azure resource group
-storage_firewall_ip_rules=["0.0.0.0/0"]         # Add the IP's based on your requirement .
+storage_firewall_ip_rules=["149.117.0.0/16", "198.182.32.0/19"]         # Add the IP's based on your requirement .
 scanfarm_enabled = true
+az_cluster_name= "cnclatest-cluster"

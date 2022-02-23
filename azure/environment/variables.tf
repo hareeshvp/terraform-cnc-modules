@@ -3,7 +3,6 @@ variable "prefix" {
 }
 
 variable "rg_location" {
-  default     = "West Europe"
   description = "The Azure Region in which all resources in this example should be provisioned"
 }
 
@@ -59,14 +58,15 @@ variable "vnet_subnetid" {
 }
 
 variable "storage_firewall_ip_rules" {
-  type    = list(string)
-  default = ["0.0.0.0/0"]
-
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+  description = "azure storage account firewall rules"
 }
 
 variable "storage_account_replication_type" {
-  type    = string
-  default = "GRS"
+  type        = string
+  default     = "GRS"
+  description = "azure stotage account replication type"
 }
 
 variable "scanfarm_enabled" {
@@ -94,4 +94,38 @@ variable "db_storage" {
   description = "db storage size in mb"
   type        = number
   default     = 32768
+}
+
+variable "az_cluster_name" {
+  description = "azure cluster name"
+  type        = string
+}
+
+variable "ingress_white_list_ip_ranges" {
+  type    = list(string)
+  default = ["0.0.0.0/0"]
+}
+
+variable "deploy_ingress_controller" {
+  type        = bool
+  description = "Flag to enable/disable the nginx-ingress-controller deployment in the GKE cluster"
+  default     = true
+}
+
+variable "ingress_controller_helm_chart_version" {
+  type        = string
+  description = "Version of the nginx-ingress-controller helm chart"
+  default     = "3.35.0"
+}
+
+variable "ingress_settings" {
+  type        = map(string)
+  description = "Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx"
+  default     = {}
+}
+
+variable "ingress_namespace" {
+  type        = string
+  description = "Namespace in which ingress controller should be deployed. If empty, then ingress-controller will be created"
+  default     = ""
 }

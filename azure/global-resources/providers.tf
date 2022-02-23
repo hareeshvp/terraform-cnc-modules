@@ -1,4 +1,3 @@
-
 terraform {
   required_version = ">= 0.12"
 }
@@ -15,6 +14,5 @@ terraform {
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-
   subscription_id = var.subscription_id
 }

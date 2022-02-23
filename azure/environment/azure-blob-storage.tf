@@ -1,5 +1,3 @@
-
-
 resource "azurerm_storage_account" "storage_account" {
   count                    = var.scanfarm_enabled ? 1 : 0
   name                     = "${var.prefix}storageac"
