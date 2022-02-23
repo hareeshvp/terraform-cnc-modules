@@ -108,7 +108,7 @@ variable "ingress_controller_helm_chart_version" {
 variable "default_node_pool_instance_type" {
   type        = string
   description = "Instance type of each node in a default node pool"
-  default     = "c5d.2xlarge"
+  default     = "m5d.2xlarge"
 }
 
 variable "default_node_pool_ami_type" {
@@ -145,7 +145,7 @@ variable "default_node_pool_max_size" {
 variable "jobfarm_node_pool_instance_type" {
   type        = string
   description = "Instance type of each node in a jobfarm node pool"
-  default     = "c5d.2xlarge"
+  default     = "m5d.2xlarge"
 }
 
 variable "jobfarm_node_pool_ami_type" {
