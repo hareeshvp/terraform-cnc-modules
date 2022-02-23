@@ -126,7 +126,7 @@ variable "load_balancer_sku" {
 
 ################# custom pool 
 
-variable "custom_pool_name" {
+variable "jobfarm_pool_name" {
   type        = string
   default     = "small"
   description = "jobfarm nodepool name"

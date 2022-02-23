@@ -54,7 +54,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
 resource "azurerm_kubernetes_cluster_node_pool" "jabformpool" {
   count                 = var.scanfarm_enabled ? 1 : 0
-  name                  = var.custom_pool_name
+  name                  = var.jobfarm_pool_name
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.jobfarmpool_vm_size
   node_count            = 1
