@@ -1,7 +1,7 @@
 # CNC-Azure
 
 Terraform creates the below AZURE cloud resources by using the individual modules.
-- [global-resources](./global-resources): This module will create the VPC network, subnetwork and GKE cluster.
+- [global-resources](./global-resources): This module will create the VNET , subnetwork and AKS cluster.
 - [environment](./environment): This module will create the Postgresql server, azure-blob-storage container(if scanfarm_enabled is true) and deploy nginx-ingress-controller in it
 
 
