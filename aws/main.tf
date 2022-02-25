@@ -53,8 +53,8 @@ module "s3_bucket" {
   create_bucket  = var.scanfarm_enabled ? true : false
   prefix         = var.prefix
   bucket_name    = var.bucket_name
-  expire_after   = var.expire_after
-  tags           = var.tags
+  # expire_after   = var.expire_after
+  tags = var.tags
 }
 
 module "rds_instance" {

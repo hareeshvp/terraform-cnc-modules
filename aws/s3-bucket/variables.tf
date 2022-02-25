@@ -34,11 +34,11 @@ variable "bucket_name" {
   default     = ""
 }
 
-variable "expire_after" {
-  type        = string
-  description = "No.of days for expiration of S3 objects"
-  default     = "30"
-}
+# variable "expire_after" {
+#   type        = string
+#   description = "No.of days for expiration of S3 objects"
+#   default     = "30"
+# }
 
 variable "tags" {
   type        = map(string)

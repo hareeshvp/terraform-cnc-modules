@@ -53,11 +53,11 @@ variable "bucket_region" {
   default     = "US"
 }
 
-variable "expire_after" {
-  type        = string
-  description = "No.of days for expiration of gcs objects"
-  default     = "30"
-}
+# variable "expire_after" {
+#   type        = string
+#   description = "No.of days for expiration of gcs objects"
+#   default     = "30"
+# }
 
 ## CloudSQL configuration
 variable "db_name" {

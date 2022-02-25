@@ -17,20 +17,20 @@ module "s3_bucket" {
   create_bucket = var.create_bucket
   bucket        = "${local.namespace}-uploads-bucket"
   force_destroy = true
-  lifecycle_rule = [
-    {
-      id      = "${local.namespace}-uploads-bucket-expiration-rule"
-      enabled = true
-      expiration = {
-        days = var.expire_after
-      }
-      tags = {
-        name         = "${local.namespace}-uploads-bucket"
-        rule         = "force-delete"
-        expire_after = var.expire_after
-      }
-    }
-  ]
+  # lifecycle_rule = [
+  #   {
+  #     id      = "${local.namespace}-uploads-bucket-expiration-rule"
+  #     enabled = true
+  #     expiration = {
+  #       days = var.expire_after
+  #     }
+  #     tags = {
+  #       name         = "${local.namespace}-uploads-bucket"
+  #       rule         = "force-delete"
+  #       expire_after = var.expire_after
+  #     }
+  #   }
+  # ]
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
